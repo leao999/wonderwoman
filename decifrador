@@ -1,0 +1,48 @@
+#lassoLetter('A', 3) = 'D'
+def lassoLetter(letter, shiftAmount):
+    letterCode = ord(letter);
+    # % -> divide and give me the reminder
+    # 7 % 2 -> 7/2's remainder? = 1
+    # begAlphaCode: 65
+    capACode = ord('A')
+    capZCode = ord('Z')
+    lowACode = ord('a')
+    lowZCode = ord('z')
+    
+    alphabetSize = 26
+    
+    if (letterCode >= capACode) & (letterCode <= capZCode):
+        begAlphaCode = capACode
+    else:
+        begAlphaCode = lowACode
+    
+    decodedLetterCode = letterCode + shiftAmount;
+    #print(decodedLetterCode)
+    # 90, 65, 26, 93 = 67
+    trueLetterCode = begAlphaCode + ((letterCode - begAlphaCode)  + shiftAmount)%alphabetSize
+    #print(trueLetterCode)
+    
+    decodeLetter = chr(trueLetterCode)
+    #minuto 25
+    #print(f"Inició con la letra {letter} que es en ASCII el codigo {letterCode}")
+    #print(f"Termina con la letra {decodeLetter} que es ASCII el codigo {trueLetterCode}")
+    
+    return decodeLetter
+    
+#print(lassoLetter('Z', 3))
+#lassoLetter('Z', 3)
+
+def lassoWord( word, shiftAmount):
+    decodedWord = " "
+    
+    for letter in word:
+        decodedLetter = lassoLetter(letter, shiftAmount)
+        
+        decodedWord += decodedLetter 
+        
+    return decodedWord
+
+print(lassoWord("WHY", 13))
+print(lassoWord("OsKzA", -18))
+print(lassoWord("OHUpO", -1))
+print(lassoWord("ed", 25))
